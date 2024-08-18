@@ -1,57 +1,9 @@
 *** Settings ***
+Resource    ../../resources/settings.robot
+Resource    ../../resources/variables.robot
+Resource    ../../resources/keywords.robot
 
-Library    requests
-Library    String
-Library    FakerLibrary    locale=pt_BR
 
-*** Variables ***
-${ROST}    https://serverest.dev
-
-#rotas
-${USER}    usuarios
-
-*** Keywords ***
-
-Cadastro de usuário ADM
-    ${nome}=    FakerLibrary.Name   
-    ${email}=      FakerLibrary.Email   
-    ${password}=    FakerLibrary.Password    5   
-
-    &{header}    Create Dictionary    Content-type=application/json
-    &{body}    Create Dictionary    nome=${nome}    email=${email}    password=${password}    administrador=true
-    ${Request}    POST    url=${ROST}/${USER}    headers=&{header}   json=&{body}
-    RETURN    ${Request}
-    
-Cadastro de usuário comum
-    ${nome}=    FakerLibrary.Name   
-    ${email}=      FakerLibrary.Email   
-    ${password}=    FakerLibrary.Password    5   
-
-    &{header}    Create Dictionary    Content-type=application/json
-    &{body}    Create Dictionary    nome=${nome}    email=${email}    password=${password}    administrador=false
-    ${Request}    POST    url=${ROST}/${USER}    headers=&{header}   json=&{body}
-    RETURN    ${Request}
-
-Campos em branco
-    [Arguments]    ${nome}    ${email}    ${password}    ${adm}
-    &{header}    Create Dictionary    Content-type=application/json
-    &{body}    Create Dictionary    nome=${nome}    email=${email}    password=${password}    administrador=${adm}
-    ${Request}    POST    url=${ROST}/${USER}    headers=&{header}   json=&{body}
-    RETURN    ${Request}
-
-E-mail repetido
-    ${nome}=    FakerLibrary.Name   
-    ${password}=    FakerLibrary.Password    5   
-
-    &{header}    Create Dictionary    Content-type=application/json
-    &{body}    Create Dictionary    nome=${nome}    email=fulano@qa.com    password=${password}    administrador=false
-    ${Request}    POST    url=${ROST}/${USER}    headers=&{header}   json=&{body}
-    RETURN    ${Request}
-
-Campos obrigatórios 
-    &{header}    Create Dictionary    Content-type=application/json
-    ${Request}    POST    url=${ROST}/${USER}    headers=&{header} 
-    RETURN    ${Request}
 
 *** Test Cases ***
 TC01 - Cadastrar usuário ADM
