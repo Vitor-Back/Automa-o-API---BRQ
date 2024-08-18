@@ -1,2 +1,13 @@
-# Automa-o-API---BRQ
-Repositório para criação da automação de testes de API para BRQ 
+# Automacao-API-BRQ
+
+
+# Projeto de Automação de Teste de API - Login e Usuário
+
+## Descrição
+
+Este projeto implementa a automação de testes para a API de gerenciamento de usuários e autenticação de login. Foram testados os métodos **GET**, **POST**, **PUT**, e **DELETE** utilizando o **Robot Framework** e as seguintes bibliotecas:
+
+- **FakerLibrary**: Para geração de dados aleatórios (nome, email, senha).
+- **Requests**: Para realizar as requisições HTTP.
+- **String**: Para manipulação de strings nas respostas e requisições.
+
