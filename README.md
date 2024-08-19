@@ -1,4 +1,4 @@
-# Automacao-API-BRQ
+# Automação-API-BRQ
 
 
 # Projeto de Automação de Teste de API - Login e Usuário
