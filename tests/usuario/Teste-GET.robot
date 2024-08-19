@@ -50,11 +50,13 @@ TC04 - Listar usuário pelo id
     Should Be Equal As Numbers    ${Response.json()["quantidade"]}  0
     Should Be Empty     ${Response.json()["usuarios"]}      
 TC05 - Listar usuário ADM 
+    Cadastro de usuário ADM
     ${Response}    Listar usuario ADM true
     Should Be Equal As Numbers    ${Response.status_code}    200
     Should Be Equal As Strings     ${Response.json()["usuarios"][0]["administrador"]}    true
 
 TC06 - Listar somente usuário comum
+    Cadastro de usuário comum
     ${Response}    Listar usuario ADM false
     Should Be Equal As Numbers    ${Response.status_code}    200
     Should Be Equal As Strings    ${Response.json()["usuarios"][0]["administrador"]}     false  
